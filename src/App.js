@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Login from './pages/login';
+import PrimaryLayout from './components/PrimaryLayout';
+import AuthorizedRoute from './components/AuthorizedRoute';
+import './style/common.less';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    componentDidMount() {
+
+    }
+
+    render() {
+        const { logged } = this.props;
+        return (
+            <Switch>
+                <Route path="/login" exact component={Login}/>
+                <AuthorizedRoute path="/" component={PrimaryLayout} logged={logged}/>
+            </Switch>
+        )
+    }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        logged: state.logged
+    }
+}
+
+export default connect(mapStateToProps)(App)

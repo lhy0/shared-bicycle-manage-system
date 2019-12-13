@@ -1,0 +1,22 @@
+@import '../../style/default.less';
+@import '../../style/loading.less';
+.container {
+    display: flex;
+    // flex-direction: row;
+    .sider {
+        flex: 0 0 256px;
+        height: 100vh;
+        background-color: #001529;
+        color: #ffffff;
+    }
+
+    .main {
+        flex: auto;
+        height: 100vh;
+        background-color: @colorL;
+    }
+
+    .content {
+        padding: 20px;
+    }
+}
